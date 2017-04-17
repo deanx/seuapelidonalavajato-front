@@ -25,7 +25,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         function loadApelidos() {
-            axios.get("http://localhost:8000").then(function(response) {
+            axios.get("http://54.174.66.117:8000/all").then(function(response) {
                 var data = response.data;
                 for (var i = 0; i < response.data.length; i++) {
                     document.getElementById('lista').innerHTML += "<span>" + response.data[i].apelido + " - " + response.data[i].owner + "</span>";
@@ -45,7 +45,7 @@
                 }
             };
             var token = document.getElementById('token').value;
-            axios.post("http://localhost:8000/add?token=" + token, payload, config).then(function(response) {
+            axios.post("http://54.174.66.117:8000/add?token=" + token, payload, config).then(function(response) {
                 console.log(response)
             }).catch(function(error) {
                 console.log(error)
