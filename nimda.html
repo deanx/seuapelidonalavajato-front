@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <style>
+        form {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            font-family: tahoma;
+            font-size: 10pt;
+        }
+        
+        input,
+        select {
+            margin-bottom: 30px;
+        }
+        
+        #lista {
+            font-family: verdana;
+            font-size: 10pt;
+            display: flex;
+            flex-direction: column
+        }
+    </style>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function loadApelidos() {
+            axios.get("http://localhost:8000").then(function(response) {
+                var data = response.data;
+                for (var i = 0; i < response.data.length; i++) {
+                    document.getElementById('lista').innerHTML += "<span>" + response.data[i].apelido + " - " + response.data[i].owner + "</span>";
+                }
+            })
+        }
+
+        function submitForm() {
+            var payload = {
+                apelido: document.getElementById('apelido').value,
+                owner: document.getElementById('owner').value
+            };
+
+            var config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            var token = document.getElementById('token').value;
+            axios.post("http://localhost:8000/add?token=" + token, payload, config).then(function(response) {
+                console.log(response)
+            }).catch(function(error) {
+                console.log(error)
+            });
+
+
+            return false;
+        }
+    </script>
+</head>
+
+<body onload="loadApelidos()">
+    <form onsubmit='return submitForm()' method='post' action='?'>
+        <label for='apelido'>Apelido</label><input id='apelido' />
+        <label for='owner'>owner</label>
+        <select id='owner'>
+          <option value='magrelo'>Magrelo</option>
+          <option value='cabeça'>Cabeça</option>
+        </select>
+        <label for='token'>Token</label><input id='token' />
+        <input type='submit' value='enviar' />
+    </form>
+    <div id='lista'>
+    </div>
+
+</body>
+
+</html>

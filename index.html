@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seu apelido na lava-jato</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        body,
+        html {
+            margin: 0px;
+            height: 100%;
+            padding: 0px;
+        }
+        
+        div {
+            align-content: center;
+            display: flex;
+            justify-content: center;
+            font-family: verdana;
+            font-size: 12pt;
+            flex-direction: column;
+        }
+        
+        #root {
+            height: 100%
+        }
+        
+        span {
+            align-self: center;
+        }
+        
+        #apelido {
+            font-weight: bold
+        }
+        
+        .fb-share-button {
+            padding: 10px
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div id="root">
+        <span>Você é o famoso</span>
+        <span id='apelido'></span>
+
+        <span class="fb-share-button" data-href="http://seuapelidonalavajato.com.br" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fseuapelidonalavajato.com.br%2F&amp;src=sdkpreparse">Share</a></span>
+
+
+    </div>
+
+    <script>
+        axios.get("http://localhost:8000/apelido").then(function(response) {
+            document.getElementById('apelido').innerText = response.data
+        }).catch(function(error) {
+            console.log(error)
+        });
+    </script>
+
+</body>
+
+</html>
