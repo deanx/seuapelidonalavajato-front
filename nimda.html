@@ -47,6 +47,7 @@
             var token = document.getElementById('token').value;
             axios.post("http://54.174.66.117:8000/add?token=" + token, payload, config).then(function(response) {
                 console.log(response)
+                document.getElementById('lista').innerHTML += "<span>" + document.getElementById('apelido').value + " - " + document.getElementById('owner').value + "</span>";
             }).catch(function(error) {
                 console.log(error)
             });
