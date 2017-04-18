@@ -43,6 +43,12 @@
         .fb-share-button {
             padding: 10px
         }
+        
+        .banner {
+            text-align: center;
+            padding: 10px;
+            padding-top: 20px;
+        }
     </style>
 </head>
 
@@ -60,15 +66,16 @@
     </script>
 
     <div id="root">
+        <a href='https://www.facebook.com/encarandocomhumor/?fref=ts' class='banner' target="_blank"><img src='./ech.png' /></a>
         <span class='label'>Você é o famoso</span>
         <span id='apelido'></span>
         <span class='label'>a casa caiu pra você na fase</span>
         <span id='fase'></span>
 
-        <span class="fb-share-button" data-href="http://seuapelidonalavajato.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fseuapelidonalavajato.com%2F&amp;src=sdkpreparse">Share</a></span>
-
-
+        <span class="fb-share-button" data-href="http://seuapelidonalavajato.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstackoverflow.com%2Fq%2F20956229%2F1101509&picture=http%3A%2F%2Fwww.applezein.net%2Fwordpress%2Fwp-content%2Fuploads%2F2015%2F03%2Ffacebook-logo.jpg&title=A+nice+question+about+Facebook&quote=Does+anyone+know+if+there+have+been+recent+changes+which+could+have+suddenly+stopped+this+from+working%3F&description=Apparently%2C+the+accepted+answer+is+not+correct.">Share</a></span>
     </div>
+
+
 
     <script>
         axios.get("http://54.174.66.117:8000/apelido").then(function(response) {
@@ -83,7 +90,6 @@
             console.log(error)
         });
     </script>
-
 </body>
 
 </html>
